@@ -7,8 +7,18 @@
                ResNet50 Choose...
             </label>
             <input type="file" name="file" id="imageUploadResNet50" accept=".png, .jpg, .jpeg">
+            <p>
+                Explainer Method:
+            </p>
+                <input type="radio" id="gradientResNet50" name="explainerResNet50" value="gradient">
+                <label for="gradientResnet50">gradient</label><br>
+                <input type="radio" id="smoothgradResNet50" name="explainerResNet50" value="smoothgrad">
+                <label for="smoothgradResnet50">smoothgrad</label><br>
+                <input type="radio" id="deconvnetResnet50" name="explainerResNet50" value="deconvnet">
+                <label for="deconvnetResnet50">deconvnet</label>
+		    </p>
         </form>
-
+<p>
         <div class="image-section-ResNet50" style="display:none;">
             <div class="img-preview">
                 <div id="imagePreviewResNet50">
@@ -18,7 +28,7 @@
                 <button type="button" class="btn btn-primary btn-lg " id="btn-predict-ResNet50">ResNet50 Predict!</button>
             </div>
         </div>
-
+</p>
         <div class="loaderResNet50" style="display:none;"></div>
 
         <h3 id="resultResNet50">
@@ -31,8 +41,19 @@
                VGG16 Choose...
             </label>
             <input type="file" name="file" id="imageUploadVGG16" accept=".png, .jpg, .jpeg">
+        <p>
+            <p>
+            Explainer Method:
+            </p>
+			<input type="radio" id="gradientVGG16" name="explainerVGG16" value="gradient">
+			<label for="gradientVGG16">gradient</label><br>
+			<input type="radio" id="smoothgradVGG16" name="explainerVGG16" value="smoothgrad">
+			<label for="smoothgradVGG16">smoothgrad</label><br>
+			<input type="radio" id="deconvnetVGG16" name="explainerVGG16" value="deconvnet">
+			<label for="deconvnetVGG16">deconvnet</label>
+		</p>
         </form>
-
+        <p>
         <div class="image-section-VGG16" style="display:none;">
             <div class="img-preview">
                 <div id="imagePreviewVGG16">
@@ -42,7 +63,7 @@
                 <button type="button" class="btn btn-primary btn-lg " id="btn-predict-VGG16">VGG16 Predict!</button>
             </div>
         </div>
-
+</p>
         <div class="loaderVGG16" style="display:none;"></div>
 
         <h3 id="resultVGG16">
@@ -56,8 +77,19 @@
                Xception Choose...
             </label>
             <input type="file" name="file" id="imageUploadXception" accept=".png, .jpg, .jpeg">
+            <p>
+            <p>
+                Explainer Method:
+            </p>
+                <input type="radio" id="gradientXception" name="explainerXception" value="gradient">
+                <label for="gradientXception">gradient</label><br>
+                <input type="radio" id="smoothgradXception" name="explainerXception" value="smoothgrad">
+                <label for="smoothgradXception">smoothgrad</label><br>
+                <input type="radio" id="deconvnetXception" name="explainerXception" value="deconvnet">
+                <label for="deconvnetXception">deconvnet</label>
+		    </p>
         </form>
-
+<p>
         <div class="image-section-Xception" style="display:none;">
             <div class="img-preview">
                 <div id="imagePreviewXception">
@@ -67,7 +99,7 @@
                 <button type="button" class="btn btn-primary btn-lg " id="btn-predict-Xception">Xception Predict!</button>
             </div>
         </div>
-
+</p>
         <div class="loaderXception" style="display:none;"></div>
 
         <h3 id="resultXception">

@@ -1,13 +1,18 @@
 from __future__ import division, print_function
 # coding=utf-8
 import os
+
+import innvestigate
 import numpy as np
 
+import matplotlib.pyplot as plt
 # Keras
 from keras.preprocessing import image
+from keras.preprocessing.image import img_to_array
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
+from keras_applications import imagenet_utils
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 # ResNet50
@@ -61,7 +66,6 @@ def predictResNet50():
         file_path = get_file_path_and_save(request)
 
         img = image.load_img(file_path, target_size=(224, 224))
-
         # Preprocessing the image
         x = image.img_to_array(img)
         # x = np.true_divide(x, 255)
@@ -70,8 +74,21 @@ def predictResNet50():
         # Be careful how your trained model deals with the input
         # otherwise, it won't make correct prediction!
         x = preprocess_input_resNet50(x, mode='caffe')
+
         # Make prediction
         preds = modelResNet50.predict(x)
+
+        model_wo_sm = innvestigate.utils.keras.graph.model_wo_softmax(modelResNet50)
+        explainer = request.form['explainerResNet50']
+
+        analyzer = innvestigate.create_analyzer(explainer, model_wo_sm)
+
+        analysis = analyzer.analyze(x)
+
+        a = analysis.sum(axis=np.argmax(np.asarray(analysis.shape) == 3))
+        a /= np.max(np.abs(a))
+        plt.imshow(a[0], cmap="seismic", clim=(-1, 1))
+        plt.savefig(file_path[:-4] + "Plot.jpg")
 
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
@@ -91,6 +108,7 @@ def predictVGG16():
         img_data = image.img_to_array(img)
         img_data = np.expand_dims(img_data, axis=0)
         img_data = preprocess_input_vgg16(img_data)
+        explainer = request.form['explainer']
 
         preds = modelVGG16.predict(img_data)
 
@@ -110,6 +128,7 @@ def predictXception():
         img_data = image.img_to_array(img)
         img_data = np.expand_dims(img_data, axis=0)
         img_data = preprocess_input_xception(img_data)
+        explainer = request.form['explainer']
 
         preds = modelXception.predict(img_data)
 
