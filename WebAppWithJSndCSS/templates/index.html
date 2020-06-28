@@ -18,7 +18,7 @@
                 <label for="deconvnetResnet50">deconvnet</label>
 		    </p>
         </form>
-<p>
+        <p>
         <div class="image-section-ResNet50" style="display:none;">
             <div class="img-preview">
                 <div id="imagePreviewResNet50">
@@ -28,20 +28,22 @@
                 <button type="button" class="btn btn-primary btn-lg " id="btn-predict-ResNet50">ResNet50 Predict!</button>
             </div>
         </div>
-</p>
+        </p>
         <div class="loaderResNet50" style="display:none;"></div>
-
         <h3 id="resultResNet50">
             <span> </span>
         </h3>
+        <div id="plotResNet50">
+        </div>
     </div>
+    <p></p>
+
     <div class="col-sm-4">
         <form id="upload-file-VGG16" method="post" enctype="multipart/form-data">
             <label for="imageUploadVGG16" class="upload-label">
                VGG16 Choose...
             </label>
             <input type="file" name="file" id="imageUploadVGG16" accept=".png, .jpg, .jpeg">
-        <p>
             <p>
             Explainer Method:
             </p>
@@ -51,7 +53,6 @@
 			<label for="smoothgradVGG16">smoothgrad</label><br>
 			<input type="radio" id="deconvnetVGG16" name="explainerVGG16" value="deconvnet">
 			<label for="deconvnetVGG16">deconvnet</label>
-		</p>
         </form>
         <p>
         <div class="image-section-VGG16" style="display:none;">
@@ -63,21 +64,15 @@
                 <button type="button" class="btn btn-primary btn-lg " id="btn-predict-VGG16">VGG16 Predict!</button>
             </div>
         </div>
-</p>
+        </p>
         <div class="loaderVGG16" style="display:none;"></div>
-
-        <h3 id="resultVGG16">
-            <span> </span>
-        </h3>
     </div>
-
     <div class="col-sm-4">
         <form id="upload-file-Xception" method="post" enctype="multipart/form-data">
             <label for="imageUploadXception" class="upload-label">
                Xception Choose...
             </label>
             <input type="file" name="file" id="imageUploadXception" accept=".png, .jpg, .jpeg">
-            <p>
             <p>
                 Explainer Method:
             </p>
@@ -87,9 +82,8 @@
                 <label for="smoothgradXception">smoothgrad</label><br>
                 <input type="radio" id="deconvnetXception" name="explainerXception" value="deconvnet">
                 <label for="deconvnetXception">deconvnet</label>
-		    </p>
         </form>
-<p>
+        <p>
         <div class="image-section-Xception" style="display:none;">
             <div class="img-preview">
                 <div id="imagePreviewXception">
@@ -99,7 +93,7 @@
                 <button type="button" class="btn btn-primary btn-lg " id="btn-predict-Xception">Xception Predict!</button>
             </div>
         </div>
-</p>
+        </p>
         <div class="loaderXception" style="display:none;"></div>
 
         <h3 id="resultXception">

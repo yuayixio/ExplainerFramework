@@ -17,13 +17,16 @@ from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 # ResNet50
 from keras.applications.resnet50 import ResNet50
-from keras.applications.imagenet_utils import preprocess_input as preprocess_input_resNet50, decode_predictions as decode_predictions_resNet50
+from keras.applications.imagenet_utils import preprocess_input as preprocess_input_resNet50, \
+    decode_predictions as decode_predictions_resNet50
 # VGG16
 from keras.applications.vgg16 import VGG16
-from keras.applications.vgg16 import preprocess_input as preprocess_input_vgg16, decode_predictions as decode_predictions_vgg16
+from keras.applications.vgg16 import preprocess_input as preprocess_input_vgg16, \
+    decode_predictions as decode_predictions_vgg16
 # Xception
 from keras.applications.xception import Xception
-from keras.applications.xception import preprocess_input as preprocess_input_xception, decode_predictions as decode_predictions_xception
+from keras.applications.xception import preprocess_input as preprocess_input_xception, \
+    decode_predictions as decode_predictions_xception
 
 # Define a flask app
 app = Flask(__name__)
@@ -41,6 +44,7 @@ modelXception = Xception(weights='imagenet', include_top=True)
 print('Xception Model loaded.')
 print('Running on http://localhost:5000')
 
+
 def get_file_path_and_save(request):
     # Get the file from post request
     f = request.files['file']
@@ -48,10 +52,9 @@ def get_file_path_and_save(request):
     # Save the file to ./uploads
     basepath = os.path.dirname(__file__)
     file_path = os.path.join(
-        basepath, 'uploads', secure_filename(f.filename))
+        basepath, 'static/uploads', secure_filename(f.filename))
     f.save(file_path)
     return file_path
-
 
 
 @app.route('/', methods=['GET'])
@@ -77,6 +80,8 @@ def predictResNet50():
 
         # Make prediction
         preds = modelResNet50.predict(x)
+        pred_class = decode_predictions_resNet50(preds, top=1)  # ImageNet Decode
+        result = str(pred_class[0][0][1])  # Convert to string
 
         model_wo_sm = innvestigate.utils.keras.graph.model_wo_softmax(modelResNet50)
         explainer = request.form['explainerResNet50']
@@ -88,15 +93,21 @@ def predictResNet50():
         a = analysis.sum(axis=np.argmax(np.asarray(analysis.shape) == 3))
         a /= np.max(np.abs(a))
         plt.imshow(a[0], cmap="seismic", clim=(-1, 1))
-        plt.savefig(file_path[:-4] + "Plot.jpg")
-
+        plt.title('Prediction Result: ' + result)
+        plt.savefig(file_path[:-4] + explainer + "Plot.jpg")
+        fullPlotFilename = file_path[:-4] + explainer + "Plot.jpg"
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
-        pred_class = decode_predictions_resNet50(preds, top=1)   # ImageNet Decode
-        result = str(pred_class[0][0][1])               # Convert to string
-        return result
+
+        return fullPlotFilename
+       # return redirect(url_for(".uploads", fullPlotFilename=fullPlotFilename))
     return None
 
+
+@app.route('/uploads', methods=['GET', 'POST'])
+def uploads():
+    fullPlotFilename = request.args['fullPlotFilename']
+    return render_template("uploads.html", fullPlotFilename=fullPlotFilename)
 
 
 @app.route('/predictVGG16', methods=['GET', 'POST'])
@@ -114,7 +125,7 @@ def predictVGG16():
 
         # decode the results into a list of tuples (class, description, probability)
         pred_class = decode_predictions_vgg16(preds, top=1)
-        result = str(pred_class[0][0][1]) + " (" + str(pred_class[0][0][2]) + ")" # Convert to string
+        result = str(pred_class[0][0][1]) + " (" + str(pred_class[0][0][2]) + ")"  # Convert to string
         return result
     return None
 
@@ -137,6 +148,7 @@ def predictXception():
         result = str(pred_class[0][0][1])  # Convert to string
         return result
     return None
+
 
 if __name__ == '__main__':
     # Serve the app with gevent

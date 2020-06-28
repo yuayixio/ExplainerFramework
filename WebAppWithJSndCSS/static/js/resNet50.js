@@ -3,6 +3,7 @@ $(document).ready(function () {
     $('.image-section-ResNet50').hide();
     $('.loaderResNet50').hide();
     $('#resultResNet50').hide();
+    $('#plotResNet50').hide();
 
     // Upload Preview
     function readURLResNet50(input) {
@@ -44,11 +45,12 @@ $(document).ready(function () {
             success: function (data) {
                 // Get and display the result
                 $('.loaderResNet50').hide();
-                $('#resultResNet50').fadeIn(600);
-                $('#resultResNet50').text(' Result:  ' + data);
+        //        $('#resultResNet50').fadeIn(600);
+         //       $('#resultResNet50').text(' Result:  ' + data1);
+                $('#plotResNet50').show();
+                $('#plotResNet50').prepend('<img src="' + data + '">');
                 console.log('ResNet50 Success!');
             },
         });
-    });
-
+     });
 });
