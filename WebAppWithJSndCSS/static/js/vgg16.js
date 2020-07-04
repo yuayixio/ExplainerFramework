@@ -42,11 +42,12 @@ $(document).ready(function () {
             processData: false,
             async: true,
             success: function (data) {
-                // Get and display the result
                 $('.loaderVGG16').hide();
-                $('#resultVGG16').fadeIn(600);
-                $('#resultVGG16').text(' Result:  ' + data);
-                console.log('VGG16 Success!');
+                $("#plotVGG16").show();
+                for (var i = 0, j = data.length; i < j; i++){
+                    $('#plotVGG16').append('<img src="' + images[i] + '" width='300' height='400'>');
+                }
+                console.log('ResNet50 Success!');
             },
         });
     });

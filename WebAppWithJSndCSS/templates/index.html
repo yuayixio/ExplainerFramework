@@ -16,7 +16,6 @@
                 <label for="smoothgradResnet50">smoothgrad</label><br>
                 <input type="radio" id="deconvnetResnet50" name="explainerResNet50" value="deconvnet">
                 <label for="deconvnetResnet50">deconvnet</label>
-		    </p>
         </form>
         <p>
         <div class="image-section-ResNet50" style="display:none;">
@@ -43,7 +42,7 @@
             <label for="imageUploadVGG16" class="upload-label">
                VGG16 Choose...
             </label>
-            <input type="file" name="file" id="imageUploadVGG16" accept=".png, .jpg, .jpeg">
+            <input type="file" name="file" id="imageUploadVGG16" accept=".png, .jpg, .jpeg" multiple>
             <p>
             Explainer Method:
             </p>
@@ -65,7 +64,11 @@
             </div>
         </div>
         </p>
+        <h3 id="resultVGG16">
+            <span> </span>
+        </h3>
         <div class="loaderVGG16" style="display:none;"></div>
+        <div id="plotVGG16"> Ergebnis: </div>
     </div>
     <div class="col-sm-4">
         <form id="upload-file-Xception" method="post" enctype="multipart/form-data">
