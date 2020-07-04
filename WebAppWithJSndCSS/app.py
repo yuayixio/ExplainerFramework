@@ -1,7 +1,7 @@
 from __future__ import division, print_function
 # coding=utf-8
 import os
-
+import json
 import innvestigate
 import numpy as np
 
@@ -47,14 +47,16 @@ print('Running on http://localhost:5000')
 
 def get_file_path_and_save(request):
     # Get the file from post request
-    f = request.files['file']
-
+    inputList = request.files.getlist('file')
+    filenamelist = []
     # Save the file to ./uploads
     basepath = os.path.dirname(__file__)
-    file_path = os.path.join(
-        basepath, 'static/uploads', secure_filename(f.filename))
-    f.save(file_path)
-    return file_path
+    for f in inputList:
+        file_path = os.path.join(
+            basepath, 'static/uploads', secure_filename(f.filename))
+        f.save(file_path)
+        filenamelist.append(file_path)
+    return filenamelist
 
 
 @app.route('/', methods=['GET'])
@@ -66,48 +68,43 @@ def index():
 @app.route('/predictResNet50', methods=['GET', 'POST'])
 def predictResNet50():
     if request.method == 'POST':
-        file_path = get_file_path_and_save(request)
+        filenamelist = get_file_path_and_save(request)
+        plotList = []
+        for file_path in filenamelist:
+            img = image.load_img(file_path, target_size=(224, 224))
+            # Preprocessing the image
+            x = image.img_to_array(img)
+            # x = np.true_divide(x, 255)
+            x = np.expand_dims(x, axis=0)
 
-        img = image.load_img(file_path, target_size=(224, 224))
-        # Preprocessing the image
-        x = image.img_to_array(img)
-        # x = np.true_divide(x, 255)
-        x = np.expand_dims(x, axis=0)
+            # Be careful how your trained model deals with the input
+            # otherwise, it won't make correct prediction!
+            x = preprocess_input_resNet50(x, mode='caffe')
 
-        # Be careful how your trained model deals with the input
-        # otherwise, it won't make correct prediction!
-        x = preprocess_input_resNet50(x, mode='caffe')
+            # Make prediction
+            preds = modelResNet50.predict(x)
+            pred_class = decode_predictions_resNet50(preds, top=1)  # ImageNet Decode
+            result = str(pred_class[0][0][1])  # Convert to string
 
-        # Make prediction
-        preds = modelResNet50.predict(x)
-        pred_class = decode_predictions_resNet50(preds, top=1)  # ImageNet Decode
-        result = str(pred_class[0][0][1])  # Convert to string
+            model_wo_sm = innvestigate.utils.keras.graph.model_wo_softmax(modelResNet50)
+            explainer = request.form['explainerResNet50']
 
-        model_wo_sm = innvestigate.utils.keras.graph.model_wo_softmax(modelResNet50)
-        explainer = request.form['explainerResNet50']
+            analyzer = innvestigate.create_analyzer(explainer, model_wo_sm)
 
-        analyzer = innvestigate.create_analyzer(explainer, model_wo_sm)
+            analysis = analyzer.analyze(x)
 
-        analysis = analyzer.analyze(x)
-
-        a = analysis.sum(axis=np.argmax(np.asarray(analysis.shape) == 3))
-        a /= np.max(np.abs(a))
-        plt.imshow(a[0], cmap="seismic", clim=(-1, 1))
-        plt.title('Prediction Result: ' + result)
-        plt.savefig(file_path[:-4] + explainer + "Plot.jpg")
-        fullPlotFilename = file_path[:-4] + explainer + "Plot.jpg"
+            a = analysis.sum(axis=np.argmax(np.asarray(analysis.shape) == 3))
+            a /= np.max(np.abs(a))
+            plt.imshow(a[0], cmap="seismic", clim=(-1, 1))
+            plt.title('Prediction Result: ' + result)
+            plt.savefig(file_path[:-4] + explainer + "Plot.jpg")
+            fullPlotFilename = file_path[:-4] + explainer + "Plot.jpg"
+            plotList.append(fullPlotFilename)
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
-
+        plotListJson = json.dumps(plotList)
         return fullPlotFilename
-       # return redirect(url_for(".uploads", fullPlotFilename=fullPlotFilename))
     return None
-
-
-@app.route('/uploads', methods=['GET', 'POST'])
-def uploads():
-    fullPlotFilename = request.args['fullPlotFilename']
-    return render_template("uploads.html", fullPlotFilename=fullPlotFilename)
 
 
 @app.route('/predictVGG16', methods=['GET', 'POST'])

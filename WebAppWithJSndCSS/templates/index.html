@@ -6,7 +6,7 @@
             <label for="imageUploadResNet50" class="upload-label">
                ResNet50 Choose...
             </label>
-            <input type="file" name="file" id="imageUploadResNet50" accept=".png, .jpg, .jpeg">
+            <input type="file" name="file" id="imageUploadResNet50" accept=".png, .jpg, .jpeg" multiple>
             <p>
                 Explainer Method:
             </p>
@@ -100,6 +100,7 @@
             <span> </span>
         </h3>
     </div>
+    {% block results %}{% endblock %}
 </div>
 
 {% endblock %}
