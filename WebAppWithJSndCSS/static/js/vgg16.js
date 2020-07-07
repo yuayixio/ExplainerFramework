@@ -44,10 +44,8 @@ $(document).ready(function () {
             success: function (data) {
                 $('.loaderVGG16').hide();
                 $("#plotVGG16").show();
-                for (var i = 0, j = data.length; i < j; i++){
-                    $('#plotVGG16').append('<img src="' + images[i] + '" width='300' height='400'>');
-                }
-                console.log('ResNet50 Success!');
+                $('#plotVGG16').append(data);
+                console.log('ResNet50 Success!!');
             },
         });
     });

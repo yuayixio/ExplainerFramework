@@ -42,14 +42,25 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             async: true,
+            dataType: 'json',
             success: function (data) {
+                console.log(typeof data);
                 // Get and display the result
                 $('.loaderResNet50').hide();
-        //        $('#resultResNet50').fadeIn(600);
-         //       $('#resultResNet50').text(' Result:  ' + data1);
                 $('#plotResNet50').show();
-                $('#plotResNet50').prepend('<img src="' + data + '">');
-                console.log('ResNet50 Success!');
+                var array = Object.values(data);
+                console.log(array)
+               /* var string = array[0];
+                console.log(string)
+                console.log(array[1])
+                var splittedString = string.split(",");
+                console.log(typeof splittedString);
+                $('#plotResNet50').append(string);
+               */
+                for (var i = 0; i < array.length; i++){
+                $('#plotResNet50').append('<img src="' + array[i] + '">');
+                }
+                console.log('ResNet50 Success!!');
             },
         });
      });
