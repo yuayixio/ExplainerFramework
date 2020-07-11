@@ -58,10 +58,46 @@ $(document).ready(function () {
                 $('#plotResNet50').append(string);
                */
                 for (var i = 0; i < array.length; i++){
-                $('#plotResNet50').append('<img src="' + array[i] + '">');
+                $('#plotResNet50').prepend('<img src="' + array[i] + '" height="300" width="300">');
                 }
+                $('#rn50-satisfied-yes').show();
+                $('#rn50-satisfied-no').show();
+                $('#rn50-satisfied-reset').show();
                 console.log('ResNet50 Success!!');
             },
         });
      });
+
+    // ask user if he's satisfied with the provided explanation
+    $('#rn50-satisfied-yes').click(rn50Click("yes"));
+    $('#rn50-satisfied-no').click(rn50Click("no"));
+    function rn50Click(yesorno) {
+        var countYes;
+        var countNo;
+        if (window.localStorage.getItem('clickCountYes')){
+            countYes = window.localStorage.getItem('clickCountYes');
+        } else {
+            countYes = 0;
+        }
+        if (window.localStorage.getItem('clickCountNo')){
+            countNo = window.localStorage.getItem('clickCountNo');
+        } else {
+            countNo = 0;
+        }
+        if (yesorno == "yes") {
+            countYes++;
+        }
+        if (yesorno == "no") {
+            countNo++;
+        }
+        window.localStorage.setItem('clickCountYes',countYes);
+        window.localStorage.setItem('clickCountNo',countNo);
+        console.log("Count Yesses: " + countYes);
+        $('#plotResNet50').append("Helpful= " + countYes + " | Unhelpful= " + countNo);
+    };
+
+    // reset counter variables
+    $('#rn50-satisfied-reset').click(function () {
+        localStorage.clear();
+    });
 });
