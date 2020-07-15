@@ -53,7 +53,7 @@ $(document).ready(function () {
                 for (var i = 0; i < array.length; i++){
                     $('#plotResNet50').prepend('<img src="' + array[i] + '" height="300" width="300">');
                 }
-                $('satisfiedResNet50').show();
+                $('#satisfiedResNet50').show();
                 $('#rn50-satisfied-yes').show();
                 $('#rn50-satisfied-no').show();
                 $('#rn50-satisfied-reset').show();
@@ -79,8 +79,7 @@ $(document).ready(function () {
         }
         countYes++;
         window.localStorage.setItem('clickCountYesRN50',countYes);
-        console.log("Count Yesses RN50: " + countYes);
-        $('#satisfactionResultsrn50').append("Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>") ;
+        $('#satisfactionResultsrn50').append("Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
     });
 
     $('#rn50-satisfied-no').click(function() {
@@ -98,7 +97,6 @@ $(document).ready(function () {
         }
         countNo++;
         window.localStorage.setItem('clickCountNoRN50',countNo);
-        console.log("Count Yesses: " + countYes);
         $('#satisfactionResultsrn50').append("Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
     });
 

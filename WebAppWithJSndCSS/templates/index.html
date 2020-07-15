@@ -8,14 +8,25 @@
             </label>
             <input type="file" name="file" id="imageUploadResNet50" accept=".png, .jpg, .jpeg" multiple>
             <p>
-                Explainer Method:
+            <h4>Explainer Method:</h4>
             </p>
+            <u><b>Function Based</b></u> <br>
                 <input type="radio" id="gradientResNet50" name="explainerResNet50" value="gradient">
-                <label for="gradientResnet50">gradient</label><br>
+                <label for="gradientResnet50" title="The gradient of the output neuron with respect to the input">Gradient</label><br>
                 <input type="radio" id="smoothgradResNet50" name="explainerResNet50" value="smoothgrad">
-                <label for="smoothgradResnet50">smoothgrad</label><br>
-                <input type="radio" id="deconvnetResnet50" name="explainerResNet50" value="deconvnet">
-                <label for="deconvnetResnet50">deconvnet</label>
+                <label for="smoothgradResnet50" title="Averages the gradient over number of inputs with added noise">SmoothGrad</label><br>
+            <u><b>Signal Based</b></u> <br>
+                <input type="radio" id="deconvnetResNet50" name="explainerResNet50" value="deconvnet">
+                <label for="deconvnetResNet50" title="Applies a ReLU in the gradient computation instead of the gradient of a ReLU">DeConvNet</label><br>
+                <input type="radio" id="guidedResNet50" name="guidedResNet50" value="guided">
+                <label for="guidedResNet50" title="Applies a ReLU in the gradient computation additionally to the gradient of a ReLU">Guided BackProp</label><br>
+                <input type="radio" id="patternNetResNet50" name="patternNetResNet50" value="pattern.net">
+                <label for="patternNetResNet50" title="Estimates the input signal of the output neuron">PatternNet</label><br>
+            <u><b>Attribution Based</b></u> <br>
+                <input type="radio" id="deepTaylorResNet50" name="explainerResNet50" value="deep_taylor">
+                <label for="deepTaylorResNet50" title="Computes for each neuron a rootpoint, that is close to the input, but which's output value is 0, and uses this difference to estimate the attribution of each neuron recursively">DeepTaylor</label><br>
+                <input type="radio" id="LRPResNet50" name="LRPResNet50" value="lrp.*">
+                <label for="LRPResNet50" title="Attributes recursively to each neuron's input relevance proportional to its contribution of the neuron output">LRP</label><br>
         </form>
         <p>
         <div class="image-section-ResNet50" style="display:none;">
@@ -37,12 +48,12 @@
             <p>
             <button type="button" class="btn btn-primary btn-lg " id="rn50-satisfied-yes" style="display:none;">Yes!</button>
             <button type="button" class="btn btn-primary btn-lg " id="rn50-satisfied-no" style="display:none;">No!</button> <br>
-            <button type="button" class="btn btn-primary btn-lg " id="rn50-satisfied-reset" style="display:none;">Reset Counter</button>
+                <p>
+                <button type="button" class="btn btn-primary btn-lg " id="rn50-satisfied-reset" style="display:none;">Reset Counter</button>
+                </p>
             </p>
             <div id="satisfactionResultsrn50"></div>
     </div>
-    <p></p>
-
     <div class="col-sm-4">
         <form id="upload-file-VGG16" method="post" enctype="multipart/form-data">
             <label for="imageUploadVGG16" class="upload-label">
@@ -50,14 +61,25 @@
             </label>
             <input type="file" name="file" id="imageUploadVGG16" accept=".png, .jpg, .jpeg" multiple>
             <p>
-            Explainer Method:
+            <h4>Explainer Method:</h4>
             </p>
+        <u><b>Function Based</b></u> <br>
 			<input type="radio" id="gradientVGG16" name="explainerVGG16" value="gradient">
-			<label for="gradientVGG16">gradient</label><br>
+			<label for="gradientVGG16" title="The gradient of the output neuron with respect to the input">Gradient</label><br>
 			<input type="radio" id="smoothgradVGG16" name="explainerVGG16" value="smoothgrad">
-			<label for="smoothgradVGG16">smoothgrad</label><br>
-			<input type="radio" id="deconvnetVGG16" name="explainerVGG16" value="deconvnet">
-			<label for="deconvnetVGG16">deconvnet</label>
+			<label for="smoothgradVGG16" title="Averages the gradient over number of inputs with added noise">SmoothGrad</label><br>
+        <u><b>Signal Based</b></u> <br>
+            <input type="radio" id="deconvnetVGG16" name="explainerVGG16" value="deconvnet">
+			<label for="deconvnetVGG16" title="Applies a ReLU in the gradient computation instead of the gradient of a ReLU">DeConvNet</label><br>
+            <input type="radio" id="guidedVGG16" name="guidedVGG16" value="guided">
+            <label for="guidedVGG16" title="Applies a ReLU in the gradient computation additionally to the gradient of a ReLU">Guided BackProp</label><br>
+            <input type="radio" id="patternNetVGG16" name="patternNetVGG16" value="pattern.net">
+            <label for="patternNetVGG16" title="Estimates the input signal of the output neuron">PatternNet</label><br>
+        <u><b>Attribution Based</b></u> <br>
+            <input type="radio" id="deepTaylorVGG16" name="explainerVGG16" value="deep_taylor">
+            <label for="deepTaylorVGG16" title="Computes for each neuron a rootpoint, that is close to the input, but which's output value is 0, and uses this difference to estimate the attribution of each neuron recursively">DeepTaylor</label><br>
+            <input type="radio" id="LRPVGG16" name="LRPVGG16" value="lrp.*">
+            <label for="LRPVGG16" title="Attributes recursively to each neuron's input relevance proportional to its contribution of the neuron output">LRP</label><br>
         </form>
         <p>
         <div class="image-section-VGG16" style="display:none;">
@@ -79,7 +101,9 @@
             <p>
             <button type="button" class="btn btn-primary btn-lg " id="VGG16-satisfied-yes" style="display:none;">Yes!</button>
             <button type="button" class="btn btn-primary btn-lg " id="VGG16-satisfied-no" style="display:none;">No!</button> <br>
-            <button type="button" class="btn btn-primary btn-lg " id="VGG16-satisfied-reset" style="display:none;">Reset Counter</button>
+                <p>
+                <button type="button" class="btn btn-primary btn-lg " id="VGG16-satisfied-reset" style="display:none;">Reset Counter</button>
+                </p>
             </p>
             <div id="satisfactionResultsVGG16"></div>
     </div>
@@ -90,15 +114,26 @@
             </label>
             <input type="file" name="file" id="imageUploadXception" accept=".png, .jpg, .jpeg" multiple>
             <p>
-                Explainer Method:
+            <h4>Explainer Method:</h4>
             </p>
+            <u><b>Function Based</b></u> <br>
                 <input type="radio" id="gradientXception" name="explainerXception" value="gradient">
-                <label for="gradientXception">gradient</label><br>
+                <label for="gradientXception" title="The gradient of the output neuron with respect to the input">Gradient</label><br>
                 <input type="radio" id="smoothgradXception" name="explainerXception" value="smoothgrad">
-                <label for="smoothgradXception">smoothgrad</label><br>
+                <label for="smoothgradXception" title="Averages the gradient over number of inputs with added noise">SmoothGrad</label><br>
+            <u><b>Signal Based</b></u> <br>
                 <input type="radio" id="deconvnetXception" name="explainerXception" value="deconvnet">
-                <label for="deconvnetXception">deconvnet</label>
-        </form>
+                <label for="deconvnetXception" title="Applies a ReLU in the gradient computation instead of the gradient of a ReLU">DeConvNet</label><br>
+                <input type="radio" id="guidedXception" name="guidedXception" value="guided">
+                <label for="guidedXception" title="Applies a ReLU in the gradient computation additionally to the gradient of a ReLU">Guided BackProp</label><br>
+                <input type="radio" id="patternNetXception" name="patternNetXception" value="pattern.net">
+                <label for="patternNetXception" title="Estimates the input signal of the output neuron">PatternNet</label><br>
+            <u><b>Attribution Based</b></u> <br>
+                <input type="radio" id="deepTaylorXception" name="explainerXception" value="deep_taylor">
+                <label for="deepTaylorXception" title="Computes for each neuron a rootpoint, that is close to the input, but which's output value is 0, and uses this difference to estimate the attribution of each neuron recursively">DeepTaylor</label><br>
+                <input type="radio" id="LRPXception" name="LRPXception" value="lrp.*">
+                <label for="LRPXception" title="Attributes recursively to each neuron's input relevance proportional to its contribution of the neuron output">LRP</label><br>
+            </form>
         <p>
         <div class="image-section-Xception" style="display:none;">
             <div class="img-preview">
@@ -119,10 +154,14 @@
             <p>
             <button type="button" class="btn btn-primary btn-lg " id="Xception-satisfied-yes" style="display:none;">Yes!</button>
             <button type="button" class="btn btn-primary btn-lg " id="Xception-satisfied-no" style="display:none;">No!</button><br>
-            <button type="button" class="btn btn-primary btn-lg " id="Xception-satisfied-reset" style="display:none;">Reset Counter</button>
+                <p>
+                <button type="button" class="btn btn-primary btn-lg " id="Xception-satisfied-reset" style="display:none;">Reset Counter</button>
+                </p>
             </p>
             <div id="satisfactionResultsXception"></div>
     </div>
 </div>
+<br>
+<sub>Tipp: Hold Cursor over Explainer Method to get additional information!</sub>
 
 {% endblock %}
