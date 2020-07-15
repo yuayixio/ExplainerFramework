@@ -49,29 +49,41 @@ $(document).ready(function () {
                 $('.loaderResNet50').hide();
                 $('#plotResNet50').show();
                 var array = Object.values(data);
-                console.log(array)
-               /* var string = array[0];
-                console.log(string)
-                console.log(array[1])
-                var splittedString = string.split(",");
-                console.log(typeof splittedString);
-                $('#plotResNet50').append(string);
-               */
+                console.log(array);
                 for (var i = 0; i < array.length; i++){
-                $('#plotResNet50').prepend('<img src="' + array[i] + '" height="300" width="300">');
+                    $('#plotResNet50').prepend('<img src="' + array[i] + '" height="300" width="300">');
                 }
+                $('satisfiedResNet50').show();
                 $('#rn50-satisfied-yes').show();
                 $('#rn50-satisfied-no').show();
                 $('#rn50-satisfied-reset').show();
+                $('#satisfactionResultsrn50').show();
                 console.log('ResNet50 Success!!');
             },
         });
      });
 
     // ask user if he's satisfied with the provided explanation
-    $('#rn50-satisfied-yes').click(rn50Click("yes"));
-    $('#rn50-satisfied-no').click(rn50Click("no"));
-    function rn50Click(yesorno) {
+    $('#rn50-satisfied-yes').click(function() {
+        var countYes;
+        var countNo;
+        if (window.localStorage.getItem('clickCountYesRN50')){
+            countYes = window.localStorage.getItem('clickCountYesRN50');
+        } else {
+            countYes = 0;
+        }
+        if (window.localStorage.getItem('clickCountNoRN50')){
+            countNo = window.localStorage.getItem('clickCountNoRN50');
+        } else {
+            countNo = 0;
+        }
+        countYes++;
+        window.localStorage.setItem('clickCountYesRN50',countYes);
+        console.log("Count Yesses RN50: " + countYes);
+        $('#satisfactionResultsrn50').append("Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>") ;
+    });
+
+    $('#rn50-satisfied-no').click(function() {
         var countYes;
         var countNo;
         if (window.localStorage.getItem('clickCountYes')){
@@ -79,25 +91,20 @@ $(document).ready(function () {
         } else {
             countYes = 0;
         }
-        if (window.localStorage.getItem('clickCountNo')){
-            countNo = window.localStorage.getItem('clickCountNo');
+        if (window.localStorage.getItem('clickCountNoRN50')){
+            countNo = window.localStorage.getItem('clickCountNoRN50');
         } else {
             countNo = 0;
         }
-        if (yesorno == "yes") {
-            countYes++;
-        }
-        if (yesorno == "no") {
-            countNo++;
-        }
-        window.localStorage.setItem('clickCountYes',countYes);
-        window.localStorage.setItem('clickCountNo',countNo);
+        countNo++;
+        window.localStorage.setItem('clickCountNoRN50',countNo);
         console.log("Count Yesses: " + countYes);
-        $('#plotResNet50').append("Helpful= " + countYes + " | Unhelpful= " + countNo);
-    };
+        $('#satisfactionResultsrn50').append("Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
+    });
 
     // reset counter variables
     $('#rn50-satisfied-reset').click(function () {
         localStorage.clear();
+        $('#satisfactionResultsrn50').empty();
     });
 });

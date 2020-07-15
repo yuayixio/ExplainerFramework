@@ -32,15 +32,14 @@
         <h3 id="resultResNet50">
             <span> </span>
         </h3>
-        <div id="plotResNet50">
-            <h2 id="satisfied" style="display:none;">Are you satisfied with the explanation?</h2>
+        <div id="plotResNet50"></div>
+            <h5 id="satisfiedResNet50" style="display:none;">Are you satisfied with the explanation?</h5>
             <p>
             <button type="button" class="btn btn-primary btn-lg " id="rn50-satisfied-yes" style="display:none;">Yes!</button>
-            <button type="button" class="btn btn-primary btn-lg " id="rn50-satisfied-no" style="display:none;">No!</button>
+            <button type="button" class="btn btn-primary btn-lg " id="rn50-satisfied-no" style="display:none;">No!</button> <br>
             <button type="button" class="btn btn-primary btn-lg " id="rn50-satisfied-reset" style="display:none;">Reset Counter</button>
             </p>
-
-        </div>
+            <div id="satisfactionResultsrn50"></div>
     </div>
     <p></p>
 
@@ -75,14 +74,21 @@
             <span> </span>
         </h3>
         <div class="loaderVGG16" style="display:none;"></div>
-        <div id="plotVGG16"> Ergebnis: </div>
+        <div id="plotVGG16"></div>
+            <h5 id="satisfiedVGG16" style="display:none;">Are you satisfied with the explanation?</h5>
+            <p>
+            <button type="button" class="btn btn-primary btn-lg " id="VGG16-satisfied-yes" style="display:none;">Yes!</button>
+            <button type="button" class="btn btn-primary btn-lg " id="VGG16-satisfied-no" style="display:none;">No!</button> <br>
+            <button type="button" class="btn btn-primary btn-lg " id="VGG16-satisfied-reset" style="display:none;">Reset Counter</button>
+            </p>
+            <div id="satisfactionResultsVGG16"></div>
     </div>
     <div class="col-sm-4">
         <form id="upload-file-Xception" method="post" enctype="multipart/form-data">
             <label for="imageUploadXception" class="upload-label">
                Xception Choose...
             </label>
-            <input type="file" name="file" id="imageUploadXception" accept=".png, .jpg, .jpeg">
+            <input type="file" name="file" id="imageUploadXception" accept=".png, .jpg, .jpeg" multiple>
             <p>
                 Explainer Method:
             </p>
@@ -105,10 +111,17 @@
         </div>
         </p>
         <div class="loaderXception" style="display:none;"></div>
-
         <h3 id="resultXception">
             <span> </span>
         </h3>
+        <div id="plotXception"></div>
+            <h5 id="satisfiedXception" style="display:none;">Are you satisfied with the explanation?</h5>
+            <p>
+            <button type="button" class="btn btn-primary btn-lg " id="Xception-satisfied-yes" style="display:none;">Yes!</button>
+            <button type="button" class="btn btn-primary btn-lg " id="Xception-satisfied-no" style="display:none;">No!</button><br>
+            <button type="button" class="btn btn-primary btn-lg " id="Xception-satisfied-reset" style="display:none;">Reset Counter</button>
+            </p>
+            <div id="satisfactionResultsXception"></div>
     </div>
 </div>
 
