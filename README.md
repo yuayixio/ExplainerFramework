@@ -1,4 +1,4 @@
-# How to extend this explainer model
+# How to extend this explainer framework
 
 In order to make this framework as extendale as possible, the construction was executed with the goal of ending up with a cooking recipe like process in the case of extension. This applies for both **new models** as well as **new explainers**
 
@@ -260,7 +260,7 @@ For explainers, it's fairly easy. However, these are currently, due to the struc
 
 All you need to do is adding another entry in each of the models explainer bullet points enumeration in the index.html file. There, just add for each explainer
 
-```HTML
+```html
 <input type="radio" id="deconvnetVGG16" name="explainerVGG16" value="deconvnet">
 <label for="deconvnetVGG16" title="Applies a ReLU in the gradient computation instead of the gradient of a ReLU">DeConvNet</label><br>
 ```
