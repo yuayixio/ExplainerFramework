@@ -1,3 +1,5 @@
+[[_TOC_]]
+
 # How to extend this explainer framework
 
 In order to make this framework as extendale as possible, the construction was executed with the goal of ending up with a cooking recipe like process in the case of extension. This applies for both **new models** as well as **new explainers**
@@ -22,7 +24,7 @@ from keras.applications.resnet50 import ResNet50
 
 - pre-load your model
 
-```python
+```py
 modelResNet50 = ResNet50(weights='imagenet')
 print('ResNet50 Model loaded.')
 ```
@@ -75,7 +77,7 @@ def predictResNet50():
 
 - create a new .js class, optionally named like the model you imported and add the following code in it. Just **rename** all the variables so that they later match the HTML
 
-```JavaScript
+```js
 $(document).ready(function () {
     // Init
     $('.image-section-ResNet50').hide();
@@ -190,7 +192,7 @@ $(document).ready(function () {
 
 - Add the following code to the HTML script. **Double check that the variable names match the JS class**
 
-```HTML
+```html
 <div class="col-sm-4">
         <form id="upload-file-ResNet50" method="post" enctype="multipart/form-data">
             <label for="imageUploadResNet50" class="upload-label">
