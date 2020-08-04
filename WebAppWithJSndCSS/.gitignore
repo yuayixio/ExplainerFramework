@@ -1,3 +1,3 @@
-uploads/*.jpg
-uploads/*.png
+static/uploads/*.jpg
+static/uploads/*.png
 models/*.h5
