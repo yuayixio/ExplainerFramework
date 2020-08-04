@@ -4,7 +4,7 @@ In order to make this framework as extendale as possible, the construction was e
 
 [[_TOC_]]
 
-### 1 Adding new models
+## 1 Adding new models
 
 Here, you're given two options. 
 
@@ -256,7 +256,7 @@ $(document).ready(function () {
 - Follow all the above steps
 
 
-### 2 Adding new explainers
+## 2 Adding new explainers
 
 For explainers, it's fairly easy. However, these are currently, due to the structure of the framework, limited to those implemented in the innvestigate library. It's possible though, to either add new explainer to the innvestigate library ([GitHub](https://github.com/albermax/innvestigate)) or slightly change the app.py class, so that it is differentiated between Innvestigate explainers and others.
 
