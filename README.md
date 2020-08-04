@@ -1,14 +1,14 @@
-[[_TOC_]]
-
 # How to extend this explainer framework
 
 In order to make this framework as extendale as possible, the construction was executed with the goal of ending up with a cooking recipe like process in the case of extension. This applies for both **new models** as well as **new explainers**
 
-### Adding new models
+[[_TOC_]]
+
+### 1 Adding new models
 
 Here, you're given two options. 
 
-#### 1. Adding existing, pre-trained models
+#### 1.1 Adding existing, pre-trained models
 
 This is the easiest case. Simply:
 
@@ -188,7 +188,7 @@ $(document).ready(function () {
 });
 ```
 
-###### index.html class (under index)
+##### index.html class (templates folder)
 
 - Add the following code to the HTML script. **Double check that the variable names match the JS class**
 
@@ -249,14 +249,14 @@ $(document).ready(function () {
 ```
 *note: depending on the current state of the framework, you may need to change the explainer accordingly*
 
-#### Adding a self-trained model
+#### 1.2 Adding a self-trained model
 
 - Add the model to the ***models*** folder of the framework
 - Import the model to the app.py class 
 - Follow all the above steps
 
 
-### Adding new explainers
+### 2 Adding new explainers
 
 For explainers, it's fairly easy. However, these are currently, due to the structure of the framework, limited to those implemented in the innvestigate library. It's possible though, to either add new explainer to the innvestigate library ([GitHub](https://github.com/albermax/innvestigate)) or slightly change the app.py class, so that it is differentiated between Innvestigate explainers and others.
 
