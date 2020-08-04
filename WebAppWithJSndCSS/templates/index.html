@@ -18,14 +18,14 @@
             <u><b>Signal Based</b></u> <br>
                 <input type="radio" id="deconvnetResNet50" name="explainerResNet50" value="deconvnet">
                 <label for="deconvnetResNet50" title="Applies a ReLU in the gradient computation instead of the gradient of a ReLU">DeConvNet</label><br>
-                <input type="radio" id="guidedResNet50" name="guidedResNet50" value="guided">
+                <input type="radio" id="guidedResNet50" name="explainerResNet50" value="guided_backprop">
                 <label for="guidedResNet50" title="Applies a ReLU in the gradient computation additionally to the gradient of a ReLU">Guided BackProp</label><br>
-                <input type="radio" id="patternNetResNet50" name="patternNetResNet50" value="pattern.net">
+                <input type="radio" id="patternNetResNet50" name="explainerResNet50" value="pattern.net">
                 <label for="patternNetResNet50" title="Estimates the input signal of the output neuron">PatternNet</label><br>
             <u><b>Attribution Based</b></u> <br>
                 <input type="radio" id="deepTaylorResNet50" name="explainerResNet50" value="deep_taylor">
                 <label for="deepTaylorResNet50" title="Computes for each neuron a rootpoint, that is close to the input, but which's output value is 0, and uses this difference to estimate the attribution of each neuron recursively">DeepTaylor</label><br>
-                <input type="radio" id="LRPResNet50" name="LRPResNet50" value="lrp.*">
+                <input type="radio" id="LRPResNet50" name="explainerResNet50" value="lrp.*">
                 <label for="LRPResNet50" title="Attributes recursively to each neuron's input relevance proportional to its contribution of the neuron output">LRP</label><br>
         </form>
         <p>
@@ -71,14 +71,14 @@
         <u><b>Signal Based</b></u> <br>
             <input type="radio" id="deconvnetVGG16" name="explainerVGG16" value="deconvnet">
 			<label for="deconvnetVGG16" title="Applies a ReLU in the gradient computation instead of the gradient of a ReLU">DeConvNet</label><br>
-            <input type="radio" id="guidedVGG16" name="guidedVGG16" value="guided">
+            <input type="radio" id="guidedVGG16" name="explainerVGG16" value="guided_backprop">
             <label for="guidedVGG16" title="Applies a ReLU in the gradient computation additionally to the gradient of a ReLU">Guided BackProp</label><br>
-            <input type="radio" id="patternNetVGG16" name="patternNetVGG16" value="pattern.net">
+            <input type="radio" id="patternNetVGG16" name="explainerVGG16" value="pattern.net">
             <label for="patternNetVGG16" title="Estimates the input signal of the output neuron">PatternNet</label><br>
         <u><b>Attribution Based</b></u> <br>
             <input type="radio" id="deepTaylorVGG16" name="explainerVGG16" value="deep_taylor">
             <label for="deepTaylorVGG16" title="Computes for each neuron a rootpoint, that is close to the input, but which's output value is 0, and uses this difference to estimate the attribution of each neuron recursively">DeepTaylor</label><br>
-            <input type="radio" id="LRPVGG16" name="LRPVGG16" value="lrp.*">
+            <input type="radio" id="LRPVGG16" name="explainerVGG16" value="lrp.*">
             <label for="LRPVGG16" title="Attributes recursively to each neuron's input relevance proportional to its contribution of the neuron output">LRP</label><br>
         </form>
         <p>
@@ -124,14 +124,14 @@
             <u><b>Signal Based</b></u> <br>
                 <input type="radio" id="deconvnetXception" name="explainerXception" value="deconvnet">
                 <label for="deconvnetXception" title="Applies a ReLU in the gradient computation instead of the gradient of a ReLU">DeConvNet</label><br>
-                <input type="radio" id="guidedXception" name="guidedXception" value="guided">
+                <input type="radio" id="guidedXception" name="explainerXception" value="guided_backprop">
                 <label for="guidedXception" title="Applies a ReLU in the gradient computation additionally to the gradient of a ReLU">Guided BackProp</label><br>
-                <input type="radio" id="patternNetXception" name="patternNetXception" value="pattern.net">
+                <input type="radio" id="patternNetXception" name="explainerXception" value="pattern.net">
                 <label for="patternNetXception" title="Estimates the input signal of the output neuron">PatternNet</label><br>
             <u><b>Attribution Based</b></u> <br>
                 <input type="radio" id="deepTaylorXception" name="explainerXception" value="deep_taylor">
                 <label for="deepTaylorXception" title="Computes for each neuron a rootpoint, that is close to the input, but which's output value is 0, and uses this difference to estimate the attribution of each neuron recursively">DeepTaylor</label><br>
-                <input type="radio" id="LRPXception" name="LRPXception" value="lrp.*">
+                <input type="radio" id="LRPXception" name="explainerXception" value="lrp.*">
                 <label for="LRPXception" title="Attributes recursively to each neuron's input relevance proportional to its contribution of the neuron output">LRP</label><br>
             </form>
         <p>

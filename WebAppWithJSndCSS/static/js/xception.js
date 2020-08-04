@@ -50,7 +50,7 @@ $(document).ready(function () {
                 for (var i = 0; i < array.length; i++){
                     $('#plotXception').prepend('<img src="' + array[i] + '" height="300" width="300">');
                 }
-                $('satisfiedXception').show();
+                $('#satisfiedXception').show();
                 $('#Xception-satisfied-yes').show();
                 $('#Xception-satisfied-no').show();
                 $('#Xception-satisfied-reset').show();
@@ -77,7 +77,7 @@ $(document).ready(function () {
         countYes++;
         window.localStorage.setItem('clickCountYesXception',countYes);
         console.log("Count Yesses Xception: " + countYes);
-        $('#satisfactionResultsXception').append("Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
+        $('#satisfactionResultsXception').append("Xception: Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
     });
 
     $('#Xception-satisfied-no').click(function() {
@@ -96,12 +96,12 @@ $(document).ready(function () {
         countNo++;
         window.localStorage.setItem('clickCountNoXception',countNo);
         console.log("Count Yesses Xception: " + countYes);
-        $('#satisfactionResultsXception').append("Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
+        $('#satisfactionResultsXception').append("Xception: Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
     });
 
     // reset counter variables
     $('#Xception-satisfied-reset').click(function () {
         localStorage.clear();
-        $("satisfactionResultsXception").empty();
+        $("#satisfactionResultsXception").empty();
     });
 });

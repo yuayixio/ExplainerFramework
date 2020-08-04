@@ -78,7 +78,7 @@ $(document).ready(function () {
         countYes++;
         window.localStorage.setItem('clickCountYesVGG16',countYes);
         console.log("Count Yesses VGG16: " + countYes);
-        $('#satisfactionResultsVGG16').append("VGG16 Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
+        $('#satisfactionResultsVGG16').append("VGG16: Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
     });
 
     $('#VGG16-satisfied-no').click(function() {
@@ -97,7 +97,7 @@ $(document).ready(function () {
         countNo++;
         window.localStorage.setItem('clickCountNoVGG16',countNo);
         console.log("Count Yesses VGG16: " + countYes);
-        $('#satisfactionResultsVGG16').append("VGG16 Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
+        $('#satisfactionResultsVGG16').append("VGG16: Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
     });
 
     // reset counter variables

@@ -79,7 +79,7 @@ $(document).ready(function () {
         }
         countYes++;
         window.localStorage.setItem('clickCountYesRN50',countYes);
-        $('#satisfactionResultsrn50').append("Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
+        $('#satisfactionResultsrn50').append("ResNet50: Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
     });
 
     $('#rn50-satisfied-no').click(function() {
@@ -97,7 +97,7 @@ $(document).ready(function () {
         }
         countNo++;
         window.localStorage.setItem('clickCountNoRN50',countNo);
-        $('#satisfactionResultsrn50').append("Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
+        $('#satisfactionResultsrn50').append("ResNet50: Helpful= " + countYes + " | Unhelpful= " + countNo + "<br>");
     });
 
     // reset counter variables
