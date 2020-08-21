@@ -1,8 +1,38 @@
-# How to extend this explainer framework
-
-In order to make this framework as extendale as possible, the construction was executed with the goal of ending up with a cooking recipe like process in the case of extension. This applies for both **new models** as well as **new explainers**
+Framework for Explainability of CNNs
 
 [[_TOC_]]
+
+# Downloading and using the framework
+
+**Clone** this repository, either by using the **CLI commands** or **Downloading it as ZIP**.
+
+After unpacking, just navigate to the folder and simply start the web application. Feel free to use a virtual environment.
+
+```bash
+$ cd ~/DOWNLOADLOCATION/WebAppWithJSndCSS
+$ pip install -r requirements.txt ## pip3 for Python3
+$ python app.py
+```
+
+Navigate to your browser to the localhost and enjoy!
+
+*Deploying on a web-server such as Nginx or Apache is possible too.*
+
+# General Structure
+
+The project is structured into three parts. The main python class **app.py** is stored in the **root** of the directory.
+
+The **html files** are stored in the **templates folder**.
+
+All functional **JavaScript** components, dedicated to the respective models, are stored in the **./static/js folder**.
+
+The overall stylistic features are stored in the **./static/css** folder.
+
+Additional models can uploaded can be stored in the **models** folder.
+
+# How to extend this explainer framework
+
+In order to make this framework easy to  as possible, the construction was executed with the goal of ending up with a cooking recipe like process in the case of extension. This applies for both **new models** as well as **new explainers**
 
 ## 1 Adding new models
 
