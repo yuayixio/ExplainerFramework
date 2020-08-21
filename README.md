@@ -299,4 +299,4 @@ All you need to do is adding another entry in each of the models explainer bulle
 Simply replace the "deconvnet" with your explainer name and adjust the model (here "VGG16") everytime in the naming as well. Also change the title to a short description about your explainer.
 
 Any other questions:
-utehf@student.kit,edu
+utehf@student.kit.edu
